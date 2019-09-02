@@ -21,7 +21,7 @@ public class RestaurantUtil {
         }
     }
 
-    public static Session getSession() throws HibernateException {
-        return ourSessionFactory.openSession();
+    public static SessionFactory getSession() throws HibernateException {
+        return ourSessionFactory;
     }
 }
