@@ -1,4 +1,5 @@
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 
@@ -6,10 +7,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Product {
+public class Product implements IBaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -18,6 +19,7 @@ public class Product {
     private double price;
 
     @Column(nullable = false)
+    @Formula(value = "price * 0.23")
     private double taxAmount;
 
     @Column(nullable = false)
@@ -26,5 +28,4 @@ public class Product {
     @ToString.Exclude
     @ManyToOne()
     private Invoice invoice;
-
 }
